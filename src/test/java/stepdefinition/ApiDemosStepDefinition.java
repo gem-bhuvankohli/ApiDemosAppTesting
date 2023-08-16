@@ -21,7 +21,7 @@ public class ApiDemosStepDefinition {
         ApiDemosAppImplementation.dragAndDropAction();
     }
 
-    @Then("the user drags and drops elements successfully")
+    @Then("verifying dragging and dropping element is successful by verifying text at bottom after drop")
     public void verifyDragAndDrop() {
         ApiDemosAppImplementation.verifyDragAndDrop();
     }
@@ -31,7 +31,7 @@ public class ApiDemosStepDefinition {
         ApiDemosAppImplementation.doubleTapAction();
     }
 
-    @Then("the user experiences a double tap effect")
+    @Then("verifying double tap effect by verifying tap count text is 2")
     public void verifyDoubleTapEffect() {
         ApiDemosAppImplementation.verifyDoubleTap();
     }
@@ -46,7 +46,7 @@ public class ApiDemosStepDefinition {
         ApiDemosAppImplementation.verifyEventsButtonIsPresent();
     }
 
-    @Then("the swipe action is successful")
+    @Then("verifying swipe action is successful by verifying width of scroll is different from initial state")
     public void verifySwipeAction() {
         ApiDemosAppImplementation.verifySwipeAction();
     }

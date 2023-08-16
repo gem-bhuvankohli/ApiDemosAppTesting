@@ -9,11 +9,11 @@ Feature: ApiDemo App Actions
 
   Scenario: Drag and Drop Elements
     When the user performs a drag and drop action
-    Then the user drags and drops elements successfully
+    Then verifying dragging and dropping element is successful by verifying text at bottom after drop
 
   Scenario: Double Tap Action
     When the user performs a double tap action
-    Then the user experiences a double tap effect
+    Then verifying double tap effect by verifying tap count text is 2
 
   Scenario: Scroll Up to Find Events Button
     When the user performs a scroll up action
@@ -21,8 +21,8 @@ Feature: ApiDemo App Actions
 
   Scenario: Swipe Right to Explore Content
     When the user performs a swipe right action
-    Then the swipe action is successful
+    Then verifying swipe action is successful by verifying width of scroll is different from initial state
 
   Scenario: Swipe Left to Navigate Back
     When the user performs a swipe left action
-    Then the swipe action is successful
+    Then verifying swipe action is successful by verifying width of scroll is different from initial state
