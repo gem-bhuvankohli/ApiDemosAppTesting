@@ -1,7 +1,6 @@
 package stepdefinition;
 
 import implementations.ApiDemosAppImplementation;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,28 +11,53 @@ public class ApiDemosStepDefinition {
         ApiDemosAppImplementation.openApplication();
     }
 
-    @When("performing scroll action")
+    @When("the user performs a scroll action and updates wallpaper")
     public void performScrollAction() {
         ApiDemosAppImplementation.scrollAction();
     }
 
-    @Then("performing drag and drop")
+    @When("the user performs a drag and drop action")
     public void performDragAndDrop() {
         ApiDemosAppImplementation.dragAndDropAction();
     }
 
-    @And("double tapping")
+    @Then("the user drags and drops elements successfully")
+    public void verifyDragAndDrop() {
+        ApiDemosAppImplementation.verifyDragAndDrop();
+    }
+
+    @When("the user performs a double tap action")
     public void doubleTapping() {
         ApiDemosAppImplementation.doubleTapAction();
     }
 
-    @And("performing scroll up action")
+    @Then("the user experiences a double tap effect")
+    public void verifyDoubleTapEffect() {
+        ApiDemosAppImplementation.verifyDoubleTap();
+    }
+
+    @When("the user performs a scroll up action")
     public void performScrollUpAction() {
         ApiDemosAppImplementation.scrollUpAction();
     }
 
-    @Then("performing swipe right")
-    public void peformSwipeRight(){ApiDemosAppImplementation.swipeRight();}
-    @And("performing swipe left")
-    public void peformSwipeLeft(){ApiDemosAppImplementation.swipeLeft();}
+    @Then("the user scrolls up to find the Events button")
+    public void verifyScrollUpAction() {
+        ApiDemosAppImplementation.verifyEventsButtonIsPresent();
+    }
+
+    @Then("the swipe action is successful")
+    public void verifySwipeAction() {
+        ApiDemosAppImplementation.verifySwipeAction();
+    }
+
+    @When("the user performs a swipe right action")
+    public void performSwipeRightAction() {
+        ApiDemosAppImplementation.swipeRight();
+    }
+
+    @When("the user performs a swipe left action")
+    public void performSwipeLeftAction() {
+        ApiDemosAppImplementation.swipeLeft();
+    }
 }

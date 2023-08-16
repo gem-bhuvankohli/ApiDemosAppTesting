@@ -11,7 +11,8 @@ import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import locators.Locators;
-import org.openqa.selenium.By;
+import org.junit.Assert;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,6 +25,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ApiDemosAppImplementation {
     public static AppiumDriver driver;
+    public static int swipeElementWidth;
+    public static int postSwipeWidth;
 
     /**
      * Opens the application.
@@ -114,7 +117,14 @@ public class ApiDemosAppImplementation {
                 .moveTo(ElementOption.element(dragDot2))
                 .release()
                 .perform();
+    }
 
+    /**
+     * Verifies drag and drop action.
+     */
+    public static void verifyDragAndDrop() {
+        String verifyDragDropText = driver.findElement(Locators.verifyDragDropText).getText();
+        Assert.assertTrue(verifyDragDropText.contains("app:id/drag_dot_1"));
         // Navigate back
         driver.navigate().back();
     }
@@ -134,7 +144,14 @@ public class ApiDemosAppImplementation {
         tapOptions.withElement(ElementOption.element(nextBtn)).withTapsCount(2);
         TouchAction action = new TouchAction<>((PerformsTouchActions) driver);
         action.tap(tapOptions).perform();
+    }
 
+    /**
+     * Verifies double tap action.
+     */
+    public static void verifyDoubleTap() {
+        String verifyNumberOfTaps = driver.findElement(Locators.verifyNumberOfTapsText).getText();
+        Assert.assertTrue(verifyNumberOfTaps.equalsIgnoreCase("2"));
         // Navigate back
         driver.navigate().back();
     }
@@ -147,33 +164,57 @@ public class ApiDemosAppImplementation {
         // Scroll up to find the Events button
         WebElement eventsBtn = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Events\").instance(0))"));
         eventsBtn.click();
-        driver.navigate().back();
-    }
-    /**
-     * Performs swipe right action.
-     * Simulates swiping within the application.
-     */
-    public static void swipeRight(){
-        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
-        WebElement translationX = driver.findElement(Locators.translationX);
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
-                "elementId",((RemoteWebElement)translationX).getId(),
-                "direction","right",
-                "percent","0.75"
-        ));
-    }
-    /**
-     * Performs swipe left action.
-     * Simulates swiping within the application.
-     */
-    public static void swipeLeft(){
-        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
-        WebElement translationX = driver.findElement(Locators.translationX);
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
-                "elementId",((RemoteWebElement)translationX).getId(),
-                "direction","left",
-                "percent","0.70"
-        ));
     }
 
+    /**
+     * Verifies the presence of Events button.
+     */
+    public static void verifyEventsButtonIsPresent() {
+        WebElement hoverButton = driver.findElement(Locators.hoverButtonIsPresent);
+        Assert.assertTrue(hoverButton.isDisplayed());
+        driver.navigate().back();
+    }
+
+    /**
+     * Performs swipe right action.
+     * Simulates swiping right within the application.
+     */
+    public static void swipeRight() {
+        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
+        WebElement translationX = driver.findElement(Locators.translationX);
+        Dimension dimension = driver.findElement(Locators.rotatingSwipeBtn).getSize();
+        swipeElementWidth = dimension.getWidth();
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) translationX).getId(),
+                "direction", "right",
+                "percent", "0.75"
+        ));
+        dimension = driver.findElement(Locators.rotatingSwipeBtn).getSize();
+        postSwipeWidth = dimension.getWidth();
+    }
+
+    /**
+     * Performs swipe left action.
+     * Simulates swiping left within the application.
+     */
+    public static void swipeLeft() {
+        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
+        WebElement translationX = driver.findElement(Locators.translationX);
+        Dimension dimension = driver.findElement(Locators.rotatingSwipeBtn).getSize();
+        swipeElementWidth = dimension.getWidth();
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) translationX).getId(),
+                "direction", "left",
+                "percent", "0.70"
+        ));
+        dimension = driver.findElement(Locators.rotatingSwipeBtn).getSize();
+        postSwipeWidth = dimension.getWidth();
+    }
+
+    /**
+     * Verifies swipe action.
+     */
+    public static void verifySwipeAction() {
+        Assert.assertTrue(swipeElementWidth != postSwipeWidth);
+    }
 }

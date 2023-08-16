@@ -21,6 +21,13 @@ public class Locators {
     // Double Tap locator
     public static final By nextBtn = By.id("com.touchboarder.android.api.demos:id/next");
 
+    // Scroll and Swipe locators
     public static final By navigateUpBtn = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
     public static final By translationX = By.id("com.touchboarder.android.api.demos:id/translationX");
+    public static final By rotatingSwipeBtn = By.id("com.touchboarder.android.api.demos:id/rotatingButton");
+
+    // Verification locators
+    public static final By verifyNumberOfTapsText = By.className("android.widget.TextView");
+    public static final By verifyDragDropText = By.id("com.touchboarder.android.api.demos:id/drag_text");
+    public static final By hoverButtonIsPresent = By.className("android.widget.Button");
 }
