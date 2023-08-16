@@ -33,5 +33,7 @@ public class ApiDemosStepDefinition {
     }
 
     @Then("performing swipe right")
-    public void peformSwipeRight(){ApiDemosAppImplementation.swipeAction();}
+    public void peformSwipeRight(){ApiDemosAppImplementation.swipeRight();}
+    @And("performing swipe left")
+    public void peformSwipeLeft(){ApiDemosAppImplementation.swipeLeft();}
 }

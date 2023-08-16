@@ -153,7 +153,7 @@ public class ApiDemosAppImplementation {
      * Performs swipe right action.
      * Simulates swiping within the application.
      */
-    public static void swipeAction(){
+    public static void swipeRight(){
         driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
         WebElement translationX = driver.findElement(Locators.translationX);
         ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
@@ -162,4 +162,18 @@ public class ApiDemosAppImplementation {
                 "percent","0.75"
         ));
     }
+    /**
+     * Performs swipe left action.
+     * Simulates swiping within the application.
+     */
+    public static void swipeLeft(){
+        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
+        WebElement translationX = driver.findElement(Locators.translationX);
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId",((RemoteWebElement)translationX).getId(),
+                "direction","left",
+                "percent","0.70"
+        ));
+    }
+
 }

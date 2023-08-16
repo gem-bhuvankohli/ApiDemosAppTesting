@@ -8,3 +8,4 @@ Feature: ApiDemo Features
     And   double tapping
     And   performing scroll up action
     Then  performing swipe right
+    And   performing swipe left
