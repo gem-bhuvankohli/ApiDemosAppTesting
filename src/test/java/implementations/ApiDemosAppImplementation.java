@@ -1,16 +1,21 @@
 package implementations;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import locators.Locators;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebElement;
 import utils.ConfigReader;
 
 import java.net.URL;
@@ -32,6 +37,7 @@ public class ApiDemosAppImplementation {
             cap.setCapability("udid", ConfigReader.getProperty("appium.udid"));
             cap.setCapability("platformName", ConfigReader.getProperty("appium.platformName"));
             cap.setCapability("app", System.getProperty("user.dir") + ConfigReader.getProperty("appium.appPath"));
+            cap.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
 
             // Initialize the driver
             URL url = new URL(ConfigReader.getProperty("appium.appUrl"));
@@ -141,5 +147,19 @@ public class ApiDemosAppImplementation {
         // Scroll up to find the Events button
         WebElement eventsBtn = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Events\").instance(0))"));
         eventsBtn.click();
+        driver.navigate().back();
+    }
+    /**
+     * Performs swipe right action.
+     * Simulates swiping within the application.
+     */
+    public static void swipeAction(){
+        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Rotating Button\").instance(0))")).click();
+        WebElement translationX = driver.findElement(Locators.translationX);
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId",((RemoteWebElement)translationX).getId(),
+                "direction","right",
+                "percent","0.75"
+        ));
     }
 }

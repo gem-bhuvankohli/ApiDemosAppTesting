@@ -31,4 +31,7 @@ public class ApiDemosStepDefinition {
     public void performScrollUpAction() {
         ApiDemosAppImplementation.scrollUpAction();
     }
+
+    @Then("performing swipe right")
+    public void peformSwipeRight(){ApiDemosAppImplementation.swipeAction();}
 }

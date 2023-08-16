@@ -22,4 +22,5 @@ public class Locators {
     public static final By nextBtn = By.id("com.touchboarder.android.api.demos:id/next");
 
     public static final By navigateUpBtn = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
+    public static final By translationX = By.id("com.touchboarder.android.api.demos:id/translationX");
 }

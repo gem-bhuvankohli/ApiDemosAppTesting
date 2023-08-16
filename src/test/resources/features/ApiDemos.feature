@@ -7,3 +7,4 @@ Feature: ApiDemo Features
     Then  performing drag and drop
     And   double tapping
     And   performing scroll up action
+    Then  performing swipe right
